@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function resolve() {
+        var vi = document.getElementById("vi").value;
+        var theta = document.getElementById("theta").value;
+        var g=document.getElementById('g').value;
+        var area =document.getElementById('area');
+        theta=theta*(Math.PI/180)
+
+        //vix,viy
+        var vix= vi*Math.cos(theta).toFixed(3);
+        var viy= vi*Math.sin(theta).toFixed(3);
+
+        //ts,tt
+        var ts=(viy/g).toFixed(3);
+        var tt=(ts*2).toFixed(3);
+
+        //ymax,xmax
+        var xmax=(vix*tt).toFixed(3)
+        var ymax=(Math.pow(viy,2)/2*g).toFixed(3);
+       
+
+        console.log(vix);
+        console.log(viy);
+        console.log(ts);
+        console.log(tt);
+        console.log(xmax);
+        console.log(ymax);
+
+        for(t=0;t<=tt;t+=1){
+            var x=vix*t;
+            var y= 400-(viy*t-(g*Math.pow(t,2))/2);
+            console.log(x.toFixed(3));
+            console.log(y.toFixed(3))
+            var birds=document.createElement('img')
+            birds.src='https://www.photofunky.net/output/image/a/e/6/c/ae6cb6/photofunky.gif';
+            birds.style.width=50+'px'
+            birds.style.position='absolute';
+            birds.style.top=y+'px';
+            birds.style.left=x+'px';
+            area.appendChild(birds);
+
+        }
+      }
+    </script>
+    <style>
+        #birdsred{
+            margin-top: 280px;
+            width: 50px;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div>vi:<input type="text" value="100" id="vi" /></div>
+      <div>theta:<input type="text" value="45" id="theta" /></div>
+      <div>g:<input type="text" value="9.8" id="g"></div>
+      <div><button onclick="resolve()">resolvemove</button></div>
+      <div><button onclick="resolve()">move</button></div>
+      <div id="area"></div>
+      <div><img id="birdsred" src="https://www.photofunky.net/output/image/a/e/6/c/ae6cb6/photofunky.gif" alt=""></div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
